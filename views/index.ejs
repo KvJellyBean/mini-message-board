@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head', { title: title } ) %>
+  <body>
+    <%- include('./partials/header') %>
+    <main>
+      <div class="innerHeader">
+        <h2><i class="fa-solid fa-hashtag"></i> General</h2>
+      </div>
+
+      <div class="innerBody">
+        <div class="messageBoard">
+          <h3>
+            <i class="fa-solid fa-hashtag"></i>
+            <br />
+            Welcome to JellyBoard!
+          </h3>
+
+          <p>This is the start of JellyBoard.</p>
+
+          <hr />
+
+          <div class="messages">
+            <% messages.map((message, index) => { %>
+            <div class="message">
+              <img
+                src="/logo.webp"
+                alt="Profile picture of <%= message.user %>"
+                width="40"
+                class="<%= message.user %>"
+              />
+              <div class="messageContent">
+                <div class="messageContentTitle">
+                  <p class="messageUser <%= message.user %>">
+                    <%= message.user %>
+                  </p>
+                  <p class="messageTime"><%= message.added %></p>
+                </div>
+
+                <div class="messageContentText">
+                  <p class="messageText"><%= message.text %></p>
+                </div>
+              </div>
+
+              <div class="">
+                <a href="/message/<%= index  %>" class="openBtn">Open</a>
+              </div>
+            </div>
+
+            <% }) %>
+          </div>
+
+          <a href="/new" class="addNewButton"
+            ><i class="fa-solid fa-plus"></i> New Message</a
+          >
+        </div>
+
+        <%- include('./partials/userList', {Users: Users}) %>
+      </div>
+    </main>
+    <%- include('./partials/footer') %>
+
+    <script>
+      window.onload = function () {
+        const messageBoard = document.querySelector(".messageBoard");
+        messageBoard.scrollTop = messageBoard.scrollHeight;
+      };
+    </script>
+  </body>
+</html>
