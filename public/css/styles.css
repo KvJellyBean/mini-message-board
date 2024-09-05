@@ -1,0 +1,917 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --base: #313338;
+  --dark: #2b2d31;
+  --darker: #1e1f22;
+  --chat-hover: #2e3035;
+  --blue: #7289da;
+  --green: #43b581;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  background-color: var(--base);
+  color: white;
+  height: 100dvh;
+  font-family: "Montserrat", sans-serif;
+  overflow: hidden;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  background-color: var(--darker);
+  padding: 1.25rem 0rem;
+  z-index: 999;
+
+  & a {
+    padding: 0 0.5rem;
+    border-radius: 100%;
+    color: white;
+    text-decoration: none;
+
+    & img {
+      border-radius: 100%;
+      transition: 0.2s ease;
+      width: 3.5rem;
+    }
+  }
+
+  & a:hover img {
+    transform: scale(1.1);
+  }
+
+  & .horizontalLine {
+    height: 2px;
+    width: 50px;
+    background-color: var(--base);
+    border: 1px solid var(--base);
+    margin: 0 20px 0 20px;
+  }
+
+  & h1 {
+    width: 35px;
+    text-transform: uppercase;
+    font-style: italic;
+    line-height: 4rem;
+    word-wrap: break-word;
+    text-align: center;
+    margin-top: -0.25rem;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  padding-left: 5.5rem;
+  width: 100%;
+  height: calc(100% - 2rem);
+
+  & .innerHeader {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+
+    & i {
+      color: rgb(141, 141, 141);
+    }
+  }
+
+  & .innerBody {
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+    gap: 0.25rem;
+
+    & .messageBoard {
+      flex-grow: 2;
+      display: flex;
+      flex-direction: column;
+      padding: 1.75rem 0.5rem 0.25rem 1.25rem;
+      height: 85.5dvh;
+      width: 50dvh;
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      & h3 {
+        font-size: 2rem;
+        line-height: 3rem;
+
+        & i {
+          font-size: 3rem;
+          font-weight: lighter;
+          padding: 1.25rem;
+          background-color: var(--base);
+          filter: brightness(1.3);
+          border-radius: 100%;
+          margin-bottom: 0.5rem;
+        }
+      }
+
+      & p {
+        color: lightgrey;
+      }
+
+      & p.KvJellyBean {
+        color: var(--blue);
+        filter: brightness(1);
+      }
+
+      & hr {
+        border: 1px solid var(--dark);
+        filter: brightness(1.5);
+        margin: 1.75rem 0;
+      }
+
+      & .messages {
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+
+        & .message {
+          display: flex;
+          gap: 1rem;
+          align-items: start;
+          position: relative;
+
+          & img {
+            border-radius: 100%;
+            width: 50px;
+          }
+
+          & .messageContent {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            overflow: hidden;
+
+            & .messageContentTitle {
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+
+              & p:nth-child(1) {
+                font-weight: 600;
+                font-size: 1rem;
+              }
+              & p:nth-child(2) {
+                font-size: 0.8rem;
+                filter: brightness(0.95);
+              }
+            }
+
+            & .messageContentText {
+              width: 100%;
+              max-height: 20rem;
+              & p {
+                max-width: 90%;
+                line-height: 1.4rem;
+                word-break: break-word;
+                font-size: 0.95rem;
+              }
+            }
+          }
+
+          & .openBtn {
+            display: none;
+            background-color: var(--dark);
+            color: white;
+            padding: 0.5rem;
+            cursor: pointer;
+            border-radius: 0.25rem;
+            z-index: 999;
+            position: absolute;
+            right: 1rem;
+            top: -1rem;
+            padding-inline: 2rem;
+            font-size: 0.9rem;
+            border: 1px solid var(--darker);
+            filter: brightness(1.15);
+            transition: 0.2s ease;
+
+            & i {
+              font-size: 1.5rem;
+            }
+          }
+        }
+
+        & .message:hover {
+          background-color: var(--chat-hover);
+
+          & .openBtn {
+            display: block;
+            text-decoration: none;
+          }
+
+          & .openBtn:hover {
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+            filter: brightness(1.25);
+          }
+        }
+      }
+
+      & .addNewButton {
+        position: fixed;
+        z-index: 999;
+        bottom: 2.5rem;
+        background-color: var(--green);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        border-radius: 3px;
+        cursor: pointer;
+        padding: 0.7rem;
+        padding-inline: 4rem;
+        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+        border: 2px solid #43b581;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+img.KvJellyBean {
+  filter: brightness(1) saturate(100%) invert(80%) sepia(78%) saturate(334%)
+    hue-rotate(190deg) brightness(88%) contrast(99%);
+}
+
+p.KvJellyBean {
+  color: var(--blue);
+  filter: brightness(1);
+}
+
+.userList {
+  flex-grow: 0.25;
+  background-color: var(--dark);
+  padding: 1.5rem;
+  z-index: 1;
+  height: 92dvh;
+  width: 25dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  & h4 {
+    color: gray;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  & ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+
+    & li {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      cursor: default;
+
+      & img {
+        border-radius: 100%;
+      }
+
+      & p {
+        margin-left: 0.5rem;
+        color: var(--dark);
+        filter: brightness(4);
+        font-weight: 500;
+      }
+
+      & p.KvJellyBean {
+        color: var(--blue);
+        filter: brightness(1);
+      }
+    }
+
+    & li:hover {
+      background-color: var(--chat-hover);
+    }
+  }
+}
+
+#newMessageMain,
+#messageMain {
+  flex-direction: row;
+
+  & #newMessageForm,
+  #messageMainDetail {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--base);
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  & .userList {
+    height: 100%;
+  }
+}
+
+/* New Message Page */
+#newMessageMain {
+  & #newMessageForm {
+    & .formCard {
+      background-color: #3a3c42;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      overflow: hidden;
+      width: 22.5rem;
+
+      & legend {
+        font-size: 1.5rem;
+        font-weight: bolder;
+        padding: 2.5rem 1rem;
+        background: linear-gradient(
+          90deg,
+          #7289da 0%,
+          #5865f2 50%,
+          #71368a 100%
+        );
+      }
+
+      & .inputForm {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+
+        & label {
+          font-size: 1rem;
+          font-weight: 600;
+        }
+
+        & input {
+          background-color: var(--dark);
+          border: 1px solid var(--darker);
+          border-radius: 0.25rem;
+          color: white;
+          font-family: "Montserrat", sans-serif;
+          font-size: 1rem;
+          padding: 0.5rem;
+        }
+
+        & textarea {
+          background-color: var(--dark);
+          border: 1px solid var(--darker);
+          border-radius: 0.25rem;
+          color: white;
+          font-size: 1rem;
+          padding: 0.5rem;
+          height: 10rem;
+          font-family: "Montserrat", sans-serif;
+          resize: none;
+        }
+      }
+
+      & .buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--dark);
+        padding: 1rem;
+
+        & button {
+          order: 1;
+          background-color: var(--blue);
+          border: 1px solid var(--blue);
+          border-radius: 0.25rem;
+          color: white;
+          cursor: pointer;
+          font-size: 1rem;
+          padding: 0.5rem;
+          width: 45%;
+          font-weight: bold;
+          transition: 0.2s ease;
+        }
+
+        & button:hover {
+          background-color: #3a3c42;
+          border: 1px solid var(--blue);
+          color: var(--blue);
+        }
+
+        & a {
+          color: var(--blue);
+          text-decoration: none;
+          transition: 0.2s ease;
+        }
+
+        & a:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+#messageMain {
+  & #messageMainDetail {
+    & .messageDetailCard {
+      border: 1px solid var(--darker);
+      border-left: 7.5px solid var(--blue);
+      border-radius: 0.5rem;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      overflow: hidden;
+      width: 28rem;
+      padding: 2rem;
+
+      & .messageMainContent {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        background-color: var(--dark);
+        padding: 1rem;
+        padding-bottom: 2rem;
+        width: 100%;
+        max-height: 20rem;
+        overflow: auto;
+
+        & .messageMainContentTitle {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+
+          & img {
+            border-radius: 100%;
+          }
+
+          & p:nth-child(2) {
+            font-size: 1.25rem;
+            font-weight: 600;
+          }
+        }
+
+        & .msgText {
+          font-size: 1rem;
+          padding-left: 3rem;
+        }
+
+        & .msgDate {
+          font-size: 0.8rem;
+          padding-left: 3rem;
+          color: rgb(161, 160, 160);
+        }
+      }
+
+      & a {
+        background-color: var(--blue);
+        border: 1px solid var(--blue);
+        border-radius: 0.25rem;
+        color: white;
+        cursor: pointer;
+        font-size: 1rem;
+        padding: 0.5rem;
+        width: 100%;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        transition: 0.2s ease;
+      }
+
+      & a:hover {
+        background-color: #3a3c42;
+        border: 1px solid var(--blue);
+        color: var(--blue);
+      }
+    }
+  }
+}
+
+* {
+  /* border: 1px solid salmon; */
+}
+
+footer {
+  background-color: var(--dark);
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 0.5rem;
+  padding-left: 7rem;
+  margin-top: auto;
+  font-size: 0.9rem;
+
+  & a {
+    text-decoration: none;
+    color: var(--blue);
+    font-weight: 600;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--darker);
+  border-radius: 50px;
+}
+
+@media screen and (max-width: 1440px) {
+  main {
+    & .innerBody {
+      & .messageBoard {
+        height: 84dvh;
+
+        & .addNewButton {
+          padding-top: 0.4rem;
+          padding-bottom: 0.4rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    flex-direction: column;
+    height: 100dvh;
+  }
+
+  header {
+    position: relative;
+    height: 10dvh;
+    flex-direction: row;
+    padding: 0.5rem 1rem;
+    gap: 0;
+
+    & .horizontalLine {
+      transform: rotate(90deg);
+      margin: 0px;
+    }
+
+    & h1 {
+      width: fit-content;
+    }
+  }
+
+  main {
+    padding-left: 0;
+
+    & .innerBody {
+      flex-direction: column;
+
+      & .messageBoard {
+        width: 100%;
+        height: 50dvh;
+        padding-top: 0;
+        padding-top: 1.25rem;
+        padding-bottom: 5.5rem;
+
+        & h3 {
+          font-size: 1.5rem;
+          line-height: 2rem;
+
+          & i {
+            font-size: 2rem;
+            padding: 1rem;
+          }
+        }
+
+        & .messages {
+          & .message {
+            & img {
+              width: 40px;
+            }
+
+            & .messageContent {
+              & .messageContentTitle {
+                & p:nth-child(1) {
+                  font-size: 0.9rem;
+                }
+                & p:nth-child(2) {
+                  font-size: 0.7rem;
+                }
+              }
+
+              & .messageContentText {
+                & p {
+                  font-size: 0.8rem;
+                }
+              }
+            }
+          }
+        }
+
+        & .addNewButton {
+          padding: 0.5rem;
+          padding-inline: 3rem;
+          width: 100%;
+          left: 0;
+          bottom: 1.9rem;
+        }
+      }
+    }
+  }
+
+  & .userList {
+    display: none;
+    z-index: 999;
+    /* position: absolute; */
+    width: 100%;
+    padding-bottom: 5.5rem;
+    height: 100%;
+
+    & h4 {
+      font-size: 0.8rem;
+    }
+
+    & ul {
+      & li {
+        & p {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+
+  footer {
+    z-index: 999;
+    padding-left: 0;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  header {
+    & a {
+      padding: 0;
+      padding-left: 0.25rem;
+      & img {
+        width: 3rem;
+      }
+    }
+
+    & .horizontalLine {
+      margin-left: -0.5rem;
+    }
+
+    & h1 {
+      font-size: 1.25rem;
+    }
+
+    & a:has(h1) {
+      margin-left: -0.5rem;
+      padding-left: 0;
+    }
+  }
+
+  main {
+    & .innerBody {
+      & .messageBoard {
+        & .addNewButton {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  #messageMain {
+    & #messageMainDetail {
+      & .messageDetailCard {
+        padding: 1.5rem;
+        width: 22rem;
+
+        & .messageMainContent {
+          & .messageMainContentTitle {
+            & img {
+              width: 40px;
+            }
+
+            & p:nth-child(2) {
+              font-size: 1.1rem;
+            }
+          }
+
+          & .msgText {
+            font-size: 0.9rem;
+          }
+
+          & .msgDate {
+            font-size: 0.7rem;
+          }
+        }
+
+        & a {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+
+  footer {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  main {
+    & .innerHeader {
+      font-size: 0.75rem;
+    }
+
+    & .innerBody {
+      & .messageBoard {
+        & .messages {
+          & .message {
+            & .openBtn {
+              padding: 0.25rem;
+              padding-inline: 1.5rem;
+              font-size: 0.8rem;
+              top: -0.5rem;
+              right: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #newMessageMain {
+    & #newMessageForm {
+      & .formCard {
+        width: 310px;
+
+        & legend {
+          padding: 2rem 1rem;
+        }
+
+        & .inputForm {
+          & label {
+            font-size: 0.9rem;
+          }
+
+          & input {
+            padding: 0.4rem;
+            font-size: 0.9rem;
+          }
+
+          & textarea {
+            padding: 0.4rem;
+            font-size: 0.9rem;
+          }
+        }
+
+        & .buttons {
+          & button {
+            padding: 0.4rem;
+            font-size: 0.9rem;
+          }
+
+          & a {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+
+  #messageMain {
+    & #messageMainDetail {
+      & .messageDetailCard {
+        padding: 1rem;
+        width: 18rem;
+
+        & .messageMainContent {
+          & .messageMainContentTitle {
+            & img {
+              width: 35px;
+            }
+
+            & p:nth-child(2) {
+              font-size: 1rem;
+            }
+          }
+
+          & .msgText,
+          .msgDate {
+            padding-left: 2.75rem;
+          }
+
+          & .msgText {
+            font-size: 0.8rem;
+          }
+
+          & .msgDate {
+            font-size: 0.6rem;
+          }
+        }
+
+        & a {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 330px) {
+  main {
+    & .innerBody {
+      & .messageBoard {
+        & h3 {
+          font-size: 1.25rem;
+          line-height: 1.75rem;
+
+          & i {
+            font-size: 1.75rem;
+            padding: 0.75rem;
+          }
+        }
+        & .messages {
+          & .message {
+            & .messageContent {
+              & .messageContentTitle {
+                & p:nth-child(1) {
+                  font-size: 0.8rem;
+                }
+                & p:nth-child(2) {
+                  font-size: 0.55rem;
+                }
+              }
+
+              & .messageContentText {
+                & p {
+                  font-size: 0.8rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #newMessageMain {
+    & #newMessageForm {
+      & .formCard {
+        width: 270px;
+
+        & legend {
+          padding: 1.75rem 1rem;
+        }
+
+        & .inputForm {
+          & label {
+            font-size: 0.85rem;
+          }
+
+          & input {
+            padding: 0.35rem;
+            font-size: 0.85rem;
+          }
+
+          & textarea {
+            padding: 0.35rem;
+            font-size: 0.85rem;
+          }
+        }
+
+        & .buttons {
+          & button {
+            padding: 0.35rem;
+            font-size: 0.85rem;
+          }
+
+          & a {
+            font-size: 0.85rem;
+          }
+        }
+      }
+    }
+  }
+}
