@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head', { title: title } ) %>
+  <body>
+    <%- include('./partials/header') %>
+    <main id="newMessageMain">
+      <form method="POST" action="/new" id="newMessageForm">
+        <div class="formCard">
+          <legend>New Message</legend>
+          <div class="inputForm">
+            <label for="user">User <span style="color: #43b581">*</span></label>
+            <input
+              type="text"
+              id="user"
+              name="messageUser"
+              required
+              maxlength="15"
+            />
+          </div>
+
+          <div class="inputForm">
+            <label for="text"
+              >Message <span style="color: #43b581">*</span></label
+            >
+            <textarea
+              name="messageText"
+              id="text"
+              cols="30"
+              rows="10"
+              required
+            ></textarea>
+          </div>
+
+          <div class="buttons">
+            <button type="submit">Send</button>
+            <a href="javascript:history.back()" class="">Back</a>
+          </div>
+        </div>
+      </form>
+
+      <%- include('./partials/userList', {Users: Users}) %>
+    </main>
+    <%- include('./partials/footer') %>
+    <script>
+      document
+        .getElementById("newMessageForm")
+        .addEventListener("submit", function (event) {
+          var submitButton = document.getElementById("submitButton");
+          submitButton.disabled = true;
+          submitButton.innerText = "Sending...";
+        });
+    </script>
+  </body>
+</html>
