@@ -1,0 +1,12 @@
+<div class="userList">
+    <h4>User – <%= Users.size %></h3>
+
+    <ul>
+      <% Users.forEach(user => { %>
+      <li>
+        <img src="/logo.webp" alt="Picture of <%= user %>" width="40" class="<%= user %>" />
+        <p class="<%= user %>"><%= user %></p>
+      </li>
+      <% }) %>
+    </ul>
+</div>
