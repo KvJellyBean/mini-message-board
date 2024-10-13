@@ -26,7 +26,10 @@ async function getUsers() {
 
 async function addMessage(user, text) {
   await pool
-    .query("INSERT INTO messages(userMsg, text) VALUES($1, $2)", [user, text])
+    .query("INSERT INTO messages(userMsg, text,added) VALUES($1, $2, NOW())", [
+      user,
+      text,
+    ])
     .catch((err) => console.error("Error executing query", err.stack));
 }
 
