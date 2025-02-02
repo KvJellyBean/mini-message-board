@@ -15,9 +15,7 @@ async function getMessages(req, res, path, title) {
 async function getUserMessage(req, res) {
   const messages = await db.getMessages();
   const messageId = req.params.id;
-  const message = messages.find(
-    (message) => message.id === parseInt(messageId)
-  );
+  const message = messages.find((message) => message.id == parseInt(messageId));
   message.added = format(new Date(message.added), "P HH:mm a");
   message.user = message.usermsg;
   delete message.usermsg;
